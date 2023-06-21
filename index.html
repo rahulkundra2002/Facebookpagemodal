@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        /* Styles for the login page */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 100px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        .form-group .success {
+            color: green;
+            margin-top: 5px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4267B2;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signup-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+
+        .signup-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            width: 300px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .signup-modal-content h3 {
+            margin-top: 0;
+        }
+
+        .signup-modal-content input[type="text"],
+        .signup-modal-content input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .signup-modal-content button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4267B2;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .signup-modal-content .back-button {
+            margin-top: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="color: #4267B2;">facebook</h2>
+        <div class="form-group">
+           
+            <input type="text" id="username" placeholder="Mobile number or email address">
+        </div>
+        <div class="form-group">
+           
+            <input type="password" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <button onclick="login()">Login</button>
+           
+        </div>
+        <div id="error-msg" class="error"></div>
+        <div class="form-group">
+            <button onclick="openSignupModal()">Sign up</button>
+        </div>
+        <div class="form-group"><center>
+            <a style="text-decoration: none" href="#" onclick="openForgotPasswordModal()">Forgotten password?</a></center>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="signup-modal">
+        <div class="signup-modal-content">
+            <span class="close-button" onclick="closeSignupModal()">&times;</span>
+            <h3>Sign Up</h3>
+            <div class="form-group">
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username" placeholder="Choose a username">
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email:</label>
+                <input type="text" id="signup-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" placeholder="Choose a password">
+            </div>
+            <div class="form-group">
+                <button onclick="submitSignup()">Submit</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="forgot-password-modal" class="signup-modal">
+        <div class="signup-modal-content">
+            <span class="close-button" onclick="closeForgotPasswordModal()">&times;</span>
+            <h3>Forgot Password</h3>
+            <div class="form-group">
+                <label for="forgot-email">Email:</label>
+                <input type="text" id="forgot-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <button onclick="submitForgotPassword()">Submit</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                document.getElementById('error-msg').innerHTML = 'Username or password is empty.';
+           } else {
+                // Perform login logic here
+              
+            }
+        }
+
+        function openSignupModal() {
+            document.getElementById('signup-modal').style.display = 'block';
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signup-modal').style.display = 'none';
+        }
+
+        function submitSignup() {
+            var signupUsername = document.getElementById('signup-username').value;
+            var signupEmail = document.getElementById('signup-email').value;
+            var signupPassword = document.getElementById('signup-password').value;
+
+            // Perform signup logic here
+
+            // Show the filled details in the modal
+            var modalContent = document.querySelector('.signup-modal-content');
+            modalContent.innerHTML = `
+                <span class="close-button" onclick="closeSignupModal()">&times;</span>
+                <h3>Sign Up</h3>
+                <p>Username: ${signupUsername}</p>
+                <p>Email: ${signupEmail}</p>
+                <p>Password: ${signupPassword}</p>
+                <div class="form-group">
+                    <button class="back-button" onclick="closeSignupModal()">Back</button>
+                </div>
+            `;
+        }
+
+        function openForgotPasswordModal() {
+            document.getElementById('forgot-password-modal').style.display = 'block';
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgot-password-modal').style.display = 'none';
+        }
+
+        function submitForgotPassword() {
+            var forgotEmail = document.getElementById('forgot-email').value;
+
+            // Perform forgot password logic here
+
+            alert('A password reset email has been sent to ' + forgotEmail);
+
+        }
+    </script>
+</body>
+</html>
